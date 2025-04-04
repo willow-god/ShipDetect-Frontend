@@ -1,42 +1,101 @@
-# Vben Admin Contributing Guide
+# Contributing to Shadcn-Admin
 
-Hi! We're really excited that you are interested in contributing to Vben Admin. Before submitting your contribution, please make sure to take a moment and read through the following guidelines:
+Thank you for considering contributing to **shadcn-admin**! Every contribution is valuable, whether it's reporting bugs, suggesting improvements, adding features, or refining README.
 
-- [Pull Request Guidelines](#pull-request-guidelines)
+## Table of Contents
 
-## Contributor Code of Conduct
+1. [Getting Started](#getting-started)
+2. [How to Contribute](#how-to-contribute)
+3. [Code Standards](#code-standards)
+4. [Pull Request Guidelines](#pull-request-guidelines)
+5. [Reporting Issues](#reporting-issues)
+6. [Community Guidelines](#community-guidelines)
 
-As contributors and maintainers of this project, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.
+---
 
-We are committed to making participation in this project a harassment-free experience for everyone, regardless of the level of experience, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, age, or religion.
+## Getting Started
 
-Examples of unacceptable behavior by participants include the use of sexual language or imagery, derogatory comments or personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.
+1. **Fork** the repository.
+2. **Clone** your fork:
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct. Project maintainers who do not follow the Code of Conduct may be removed from the project team.
+   ```bash
+   git clone https://github.com/your-username/shadcn-admin.git
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   pnpm install
+   ```
+
+4. **Run the project locally:**
+
+   ```bash
+   pnpm dev
+   ```
+
+5. Create a new branch for your contribution:
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+---
+
+## How to Contribute
+
+- **Feature Requests:** Open an issue or start a discussion to discuss the feature before implementation.
+- **Bug Fixes:** Provide clear reproduction steps in your issue.
+- **Documentation:** Improvements to the documentation (README) are always appreciated.
+
+> **Note:** Pull Requests adding new features without a prior issue or discussion will **not be accepted**.
+
+---
+
+## Code Standards
+
+- Follow the existing **ESLint** and **Prettier** configurations.
+- Ensure your code is **type-safe** with **TypeScript**.
+- Maintain consistency with the existing code structure.
+
+> **Tips!** Before submitting your changes, run the following commands:
+
+```bash
+pnpm lint && pnpm format && pnpm knip && pnpm build
+```
+
+---
 
 ## Pull Request Guidelines
 
-- Checkout a topic branch from the relevant branch, e.g. main, and merge back against that branch.
+- **Follow the [PR Template](./PULL_REQUEST_TEMPLATE.md):**
+  - Description
+  - Types of changes
+  - Checklist
+  - Further comments
+  - Related Issue
+- Ensure your changes pass **CI checks**.
+- Keep PRs **focused** and **concise**.
+- Reference related issues in your PR description.
 
-- If adding a new feature:
+---
 
-  - Provide a convincing reason to add this feature. Ideally, you should open a suggestion issue first and have it approved before working on it.
+## Reporting Issues
 
-- If fixing bug:
+- Clearly describe the issue.
+- Provide reproduction steps if applicable.
+- Include screenshots or code examples if relevant.
 
-  - Provide a detailed description of the bug in the PR. Live demo preferred.
+---
 
-- It's OK to have multiple small commits as you work on the PR - GitHub can automatically squash them before merging.
+## Community Guidelines
 
-## Development Setup
+- Be respectful and constructive.
+- Follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+- Stay on topic in discussions.
 
-You will need [pnpm](https://pnpm.io/)
+---
 
-After cloning the repo, run:
+Thank you for helping make **shadcn-admin** better! 🚀
 
-```bash
-# install the dependencies of the project
-$ pnpm install
-# start the project
-$ pnpm run dev
-```
+If you have any questions, feel free to reach out via [Discussions](https://github.com/satnaing/shadcn-admin/discussions).
