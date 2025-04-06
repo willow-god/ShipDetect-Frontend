@@ -40,11 +40,20 @@ const AuthenticatedUsersIndexLazyImport = createFileRoute(
 const AuthenticatedTasksIndexLazyImport = createFileRoute(
   '/_authenticated/tasks/',
 )()
+const AuthenticatedStatusIndexLazyImport = createFileRoute(
+  '/_authenticated/status/',
+)()
 const AuthenticatedSettingsIndexLazyImport = createFileRoute(
   '/_authenticated/settings/',
 )()
 const AuthenticatedHelpCenterIndexLazyImport = createFileRoute(
   '/_authenticated/help-center/',
+)()
+const AuthenticatedDashboardIndexLazyImport = createFileRoute(
+  '/_authenticated/dashboard/',
+)()
+const AuthenticatedDailyIndexLazyImport = createFileRoute(
+  '/_authenticated/daily/',
 )()
 const AuthenticatedChatsIndexLazyImport = createFileRoute(
   '/_authenticated/chats/',
@@ -63,6 +72,9 @@ const AuthenticatedSettingsAppearanceLazyImport = createFileRoute(
 )()
 const AuthenticatedSettingsAccountLazyImport = createFileRoute(
   '/_authenticated/settings/account',
+)()
+const AuthenticatedIdentifyVideoManagerIndexLazyImport = createFileRoute(
+  '/_authenticated/identify/video/manager/',
 )()
 
 // Create/Update Routes
@@ -189,6 +201,15 @@ const AuthenticatedTasksIndexLazyRoute =
     import('./routes/_authenticated/tasks/index.lazy').then((d) => d.Route),
   )
 
+const AuthenticatedStatusIndexLazyRoute =
+  AuthenticatedStatusIndexLazyImport.update({
+    id: '/status/',
+    path: '/status/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/status/index.lazy').then((d) => d.Route),
+  )
+
 const AuthenticatedSettingsIndexLazyRoute =
   AuthenticatedSettingsIndexLazyImport.update({
     id: '/',
@@ -207,6 +228,24 @@ const AuthenticatedHelpCenterIndexLazyRoute =
     import('./routes/_authenticated/help-center/index.lazy').then(
       (d) => d.Route,
     ),
+  )
+
+const AuthenticatedDashboardIndexLazyRoute =
+  AuthenticatedDashboardIndexLazyImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/dashboard/index.lazy').then((d) => d.Route),
+  )
+
+const AuthenticatedDailyIndexLazyRoute =
+  AuthenticatedDailyIndexLazyImport.update({
+    id: '/daily/',
+    path: '/daily/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/daily/index.lazy').then((d) => d.Route),
   )
 
 const AuthenticatedChatsIndexLazyRoute =
@@ -268,6 +307,17 @@ const AuthenticatedSettingsAccountLazyRoute =
     getParentRoute: () => AuthenticatedSettingsRouteLazyRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/settings/account.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedIdentifyVideoManagerIndexLazyRoute =
+  AuthenticatedIdentifyVideoManagerIndexLazyImport.update({
+    id: '/identify/video/manager/',
+    path: '/identify/video/manager/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/identify/video/manager/index.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -416,6 +466,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedChatsIndexLazyImport
       parentRoute: typeof AuthenticatedRouteImport
     }
+    '/_authenticated/daily/': {
+      id: '/_authenticated/daily/'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof AuthenticatedDailyIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/help-center/': {
       id: '/_authenticated/help-center/'
       path: '/help-center'
@@ -430,6 +494,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexLazyImport
       parentRoute: typeof AuthenticatedSettingsRouteLazyImport
     }
+    '/_authenticated/status/': {
+      id: '/_authenticated/status/'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof AuthenticatedStatusIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/tasks/': {
       id: '/_authenticated/tasks/'
       path: '/tasks'
@@ -442,6 +513,13 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof AuthenticatedUsersIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/identify/video/manager/': {
+      id: '/_authenticated/identify/video/manager/'
+      path: '/identify/video/manager'
+      fullPath: '/identify/video/manager'
+      preLoaderRoute: typeof AuthenticatedIdentifyVideoManagerIndexLazyImport
       parentRoute: typeof AuthenticatedRouteImport
     }
   }
@@ -480,9 +558,13 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedAppsIndexLazyRoute: typeof AuthenticatedAppsIndexLazyRoute
   AuthenticatedChatsIndexLazyRoute: typeof AuthenticatedChatsIndexLazyRoute
+  AuthenticatedDailyIndexLazyRoute: typeof AuthenticatedDailyIndexLazyRoute
+  AuthenticatedDashboardIndexLazyRoute: typeof AuthenticatedDashboardIndexLazyRoute
   AuthenticatedHelpCenterIndexLazyRoute: typeof AuthenticatedHelpCenterIndexLazyRoute
+  AuthenticatedStatusIndexLazyRoute: typeof AuthenticatedStatusIndexLazyRoute
   AuthenticatedTasksIndexLazyRoute: typeof AuthenticatedTasksIndexLazyRoute
   AuthenticatedUsersIndexLazyRoute: typeof AuthenticatedUsersIndexLazyRoute
+  AuthenticatedIdentifyVideoManagerIndexLazyRoute: typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -491,9 +573,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedAppsIndexLazyRoute: AuthenticatedAppsIndexLazyRoute,
   AuthenticatedChatsIndexLazyRoute: AuthenticatedChatsIndexLazyRoute,
+  AuthenticatedDailyIndexLazyRoute: AuthenticatedDailyIndexLazyRoute,
+  AuthenticatedDashboardIndexLazyRoute: AuthenticatedDashboardIndexLazyRoute,
   AuthenticatedHelpCenterIndexLazyRoute: AuthenticatedHelpCenterIndexLazyRoute,
+  AuthenticatedStatusIndexLazyRoute: AuthenticatedStatusIndexLazyRoute,
   AuthenticatedTasksIndexLazyRoute: AuthenticatedTasksIndexLazyRoute,
   AuthenticatedUsersIndexLazyRoute: AuthenticatedUsersIndexLazyRoute,
+  AuthenticatedIdentifyVideoManagerIndexLazyRoute:
+    AuthenticatedIdentifyVideoManagerIndexLazyRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -519,10 +606,14 @@ export interface FileRoutesByFullPath {
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsLazyRoute
   '/apps': typeof AuthenticatedAppsIndexLazyRoute
   '/chats': typeof AuthenticatedChatsIndexLazyRoute
+  '/daily': typeof AuthenticatedDailyIndexLazyRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexLazyRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexLazyRoute
   '/settings/': typeof AuthenticatedSettingsIndexLazyRoute
+  '/status': typeof AuthenticatedStatusIndexLazyRoute
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
+  '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -543,10 +634,14 @@ export interface FileRoutesByTo {
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsLazyRoute
   '/apps': typeof AuthenticatedAppsIndexLazyRoute
   '/chats': typeof AuthenticatedChatsIndexLazyRoute
+  '/daily': typeof AuthenticatedDailyIndexLazyRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexLazyRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexLazyRoute
   '/settings': typeof AuthenticatedSettingsIndexLazyRoute
+  '/status': typeof AuthenticatedStatusIndexLazyRoute
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
+  '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
 }
 
 export interface FileRoutesById {
@@ -571,10 +666,14 @@ export interface FileRoutesById {
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsLazyRoute
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexLazyRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexLazyRoute
+  '/_authenticated/daily/': typeof AuthenticatedDailyIndexLazyRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexLazyRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexLazyRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexLazyRoute
+  '/_authenticated/status/': typeof AuthenticatedStatusIndexLazyRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexLazyRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexLazyRoute
+  '/_authenticated/identify/video/manager/': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -599,10 +698,14 @@ export interface FileRouteTypes {
     | '/settings/notifications'
     | '/apps'
     | '/chats'
+    | '/daily'
+    | '/dashboard'
     | '/help-center'
     | '/settings/'
+    | '/status'
     | '/tasks'
     | '/users'
+    | '/identify/video/manager'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/500'
@@ -622,10 +725,14 @@ export interface FileRouteTypes {
     | '/settings/notifications'
     | '/apps'
     | '/chats'
+    | '/daily'
+    | '/dashboard'
     | '/help-center'
     | '/settings'
+    | '/status'
     | '/tasks'
     | '/users'
+    | '/identify/video/manager'
   id:
     | '__root__'
     | '/_authenticated'
@@ -648,10 +755,14 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/notifications'
     | '/_authenticated/apps/'
     | '/_authenticated/chats/'
+    | '/_authenticated/daily/'
+    | '/_authenticated/dashboard/'
     | '/_authenticated/help-center/'
     | '/_authenticated/settings/'
+    | '/_authenticated/status/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/_authenticated/identify/video/manager/'
   fileRoutesById: FileRoutesById
 }
 
@@ -716,9 +827,13 @@ export const routeTree = rootRoute
         "/_authenticated/",
         "/_authenticated/apps/",
         "/_authenticated/chats/",
+        "/_authenticated/daily/",
+        "/_authenticated/dashboard/",
         "/_authenticated/help-center/",
+        "/_authenticated/status/",
         "/_authenticated/tasks/",
-        "/_authenticated/users/"
+        "/_authenticated/users/",
+        "/_authenticated/identify/video/manager/"
       ]
     },
     "/(auth)/500": {
@@ -793,6 +908,14 @@ export const routeTree = rootRoute
       "filePath": "_authenticated/chats/index.lazy.tsx",
       "parent": "/_authenticated"
     },
+    "/_authenticated/daily/": {
+      "filePath": "_authenticated/daily/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/dashboard/": {
+      "filePath": "_authenticated/dashboard/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
     "/_authenticated/help-center/": {
       "filePath": "_authenticated/help-center/index.lazy.tsx",
       "parent": "/_authenticated"
@@ -801,12 +924,20 @@ export const routeTree = rootRoute
       "filePath": "_authenticated/settings/index.lazy.tsx",
       "parent": "/_authenticated/settings"
     },
+    "/_authenticated/status/": {
+      "filePath": "_authenticated/status/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
     "/_authenticated/tasks/": {
       "filePath": "_authenticated/tasks/index.lazy.tsx",
       "parent": "/_authenticated"
     },
     "/_authenticated/users/": {
       "filePath": "_authenticated/users/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/identify/video/manager/": {
+      "filePath": "_authenticated/identify/video/manager/index.lazy.tsx",
       "parent": "/_authenticated"
     }
   }

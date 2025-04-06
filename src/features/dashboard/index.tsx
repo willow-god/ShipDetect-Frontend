@@ -11,7 +11,7 @@ import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { TopNav } from '@/components/layout/top-nav'
 import { ProfileDropdown } from '@/components/profile-dropdown'
-import { Search } from '@/components/search'
+// import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { Overview } from './components/overview'
 import { RecentSales } from './components/recent-sales'
@@ -23,7 +23,7 @@ export default function Dashboard() {
       <Header>
         <TopNav links={topNav} />
         <div className='ml-auto flex items-center space-x-4'>
-          <Search />
+          {/* <Search /> */}
           <ThemeSwitch />
           <ProfileDropdown />
         </div>
@@ -32,9 +32,9 @@ export default function Dashboard() {
       {/* ===== Main ===== */}
       <Main>
         <div className='mb-2 flex items-center justify-between space-y-2'>
-          <h1 className='text-2xl font-bold tracking-tight'>Dashboard</h1>
+          <h1 className='text-2xl font-bold tracking-tight'>数据面板</h1>
           <div className='flex items-center space-x-2'>
-            <Button>Download</Button>
+            <Button>下载数据表格</Button>
           </div>
         </div>
         <Tabs
@@ -44,15 +44,15 @@ export default function Dashboard() {
         >
           <div className='w-full overflow-x-auto pb-2'>
             <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
+              <TabsTrigger value='overview'>概览</TabsTrigger>
               <TabsTrigger value='analytics' disabled>
-                Analytics
+                分析
               </TabsTrigger>
               <TabsTrigger value='reports' disabled>
-                Reports
+                报告
               </TabsTrigger>
               <TabsTrigger value='notifications' disabled>
-                Notifications
+                通知
               </TabsTrigger>
             </TabsList>
           </div>
@@ -61,7 +61,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Total Revenue
+                    本月总航船通过量
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -77,16 +77,16 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>$45,231.89</div>
+                  <div className='text-2xl font-bold'>324874</div>
                   <p className='text-xs text-muted-foreground'>
-                    +20.1% from last month
+                    相较上个月 +12.3%
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Subscriptions
+                    本月通过航船类别数量
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -104,15 +104,15 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+2350</div>
+                  <div className='text-2xl font-bold'>2350</div>
                   <p className='text-xs text-muted-foreground'>
-                    +180.1% from last month
+                    相较上个月 +5.4%
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>Sales</CardTitle>
+                  <CardTitle className='text-sm font-medium'>全年通过航船总量</CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
@@ -128,16 +128,16 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+12,234</div>
+                  <div className='text-2xl font-bold'>38219043</div>
                   <p className='text-xs text-muted-foreground'>
-                    +19% from last month
+                    相较去年 +23.2%
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Active Now
+                    船舶身份识别率
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -153,9 +153,9 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+573</div>
+                  <div className='text-2xl font-bold'>97.438%</div>
                   <p className='text-xs text-muted-foreground'>
-                    +201 since last hour
+                    得益于新算法的应用，相较去年 +5.2%
                   </p>
                 </CardContent>
               </Card>
@@ -163,7 +163,7 @@ export default function Dashboard() {
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
               <Card className='col-span-1 lg:col-span-4'>
                 <CardHeader>
-                  <CardTitle>Overview</CardTitle>
+                  <CardTitle>每日通过量统计</CardTitle>
                 </CardHeader>
                 <CardContent className='pl-2'>
                   <Overview />
@@ -171,9 +171,9 @@ export default function Dashboard() {
               </Card>
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>最近通过量</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    仅显示最近通过的船舶数据
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -190,26 +190,26 @@ export default function Dashboard() {
 
 const topNav = [
   {
-    title: 'Overview',
-    href: 'dashboard/overview',
+    title: '概览数据',
+    href: '/dashboard',
     isActive: true,
     disabled: false,
   },
   {
-    title: 'Customers',
-    href: 'dashboard/customers',
+    title: '乘客统计',
+    href: '/dashboard/customers',
     isActive: false,
     disabled: true,
   },
   {
-    title: 'Products',
-    href: 'dashboard/products',
+    title: '船号统计',
+    href: '/dashboard/products',
     isActive: false,
     disabled: true,
   },
   {
-    title: 'Settings',
-    href: 'dashboard/settings',
+    title: '型号统计',
+    href: '/dashboard/settings',
     isActive: false,
     disabled: true,
   },

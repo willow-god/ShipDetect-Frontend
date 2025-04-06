@@ -1,31 +1,43 @@
 import {
-  IconBarrierBlock,
-  IconBrowserCheck,
+  IconLayoutDashboard,
+  IconChartHistogram,
+  IconDatabase,
+  IconVideo,
+  IconFileSearch,
+  IconSettings,
+  IconUser,
+  IconUserCog,
+  IconAdjustments,
+  IconReload,
+  IconShip,
+  IconListDetails,
+  IconDeviceAnalytics,
+  IconUsersGroup,
+  IconTools,
+  IconHelpCircle,
+  IconQuestionMark,
+  IconPhoneCall,
   IconBug,
+  IconFileText,
+  IconLockAccess,
+  IconKey,
+  IconBrowserCheck,
+  IconNotification,
+  IconPalette,
+  IconBarrierBlock,
+  IconServerOff,
   IconChecklist,
   IconError404,
-  IconHelp,
-  IconLayoutDashboard,
-  IconLock,
-  IconLockAccess,
-  IconMessages,
-  IconNotification,
   IconPackages,
-  IconPalette,
-  IconServerOff,
-  IconSettings,
-  IconTool,
-  IconUserCog,
-  IconUserOff,
-  IconUsers,
+  IconHome,
 } from '@tabler/icons-react'
 import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
-    name: 'satnaing',
-    email: 'satnaingdev@gmail.com',
+    name: 'LiuShen',
+    email: '01@liushen.fun',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
@@ -47,78 +59,209 @@ export const sidebarData: SidebarData = {
   ],
   navGroups: [
     {
-      title: '信息展示',
+      title: '快速开始',
+      items: [
+        {
+          title: '主页',
+          url: '/',
+          icon: IconHome,
+        }
+      ],
+    },
+    {
+      title: '仪表板',
       items: [
         {
           title: '数据面板',
-          url: '/',
+          url: '/dashboard',
           icon: IconLayoutDashboard,
         },
         {
-          title: '任务内容',
-          url: '/tasks',
-          icon: IconChecklist,
+          title: '系统状态',
+          url: '/status',
+          icon: IconDeviceAnalytics,
         },
         {
-          title: '涉及应用',
-          url: '/apps',
-          icon: IconPackages,
-        },
-        {
-          title: '后台消息',
-          url: '/chats',
-          badge: '3',
-          icon: IconMessages,
-        },
-        {
-          title: '用户管理',
-          url: '/users',
-          icon: IconUsers,
+          title: '今日统计',
+          url: '/daily',
+          icon: IconChartHistogram,
         },
       ],
     },
     {
-      title: 'Pages',
+      title: '识别功能',
       items: [
         {
-          title: 'Auth',
-          icon: IconLockAccess,
+          title: '视频数据',
+          icon: IconDatabase,
           items: [
             {
-              title: 'Sign In',
-              url: '/sign-in',
+              title: '数据管理',
+              url: '/identify/video/manager',
+              icon: IconVideo,
             },
             {
-              title: 'Sign In (2 Col)',
+              title: '数据查看',
               url: '/sign-in-2',
-            },
-            {
-              title: 'Sign Up',
-              url: '/sign-up',
-            },
-            {
-              title: 'Forgot Password',
-              url: '/forgot-password',
-            },
-            {
-              title: 'OTP',
-              url: '/otp',
+              icon: IconFileText,
             },
           ],
         },
         {
-          title: 'Errors',
+          title: '样例测试',
           icon: IconBug,
+          items: [
+            {
+              title: '单图识别',
+              url: '/401',
+              icon: IconFileSearch,
+            },
+            {
+              title: '视频识别',
+              url: '/403',
+              icon: IconVideo,
+            },
+            {
+              title: '数据展示',
+              url: '/404',
+              icon: IconListDetails,
+            },
+          ],
+        },
+        {
+          title: '信息管理',
+          icon: IconShip,
+          items: [
+            {
+              title: '船舶号列表',
+              url: '/401',
+              icon: IconListDetails,
+            },
+            {
+              title: '管理船舶号',
+              url: '/403',
+              icon: IconAdjustments,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: '系统操作',
+      items: [
+        {
+          title: '用户管理',
+          icon: IconUser,
+          items: [
+            {
+              title: '用户列表',
+              url: '/settings',
+              icon: IconUsersGroup,
+            },
+            {
+              title: '管理用户',
+              url: '/settings/account',
+              icon: IconUserCog,
+            },
+          ],
+        },
+        {
+          title: '系统参数',
+          icon: IconSettings,
+          items: [
+            {
+              title: '模型参数配置',
+              url: '/settings',
+              icon: IconAdjustments,
+            },
+            {
+              title: '系统信息',
+              url: '/settings/account',
+              icon: IconTools,
+            },
+            {
+              title: '重启系统',
+              url: '/settings/account',
+              icon: IconReload,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: '示例页面',
+      items: [
+        {
+          title: '数据面板',
+          icon: IconLayoutDashboard,
+          items: [
+            {
+              title: '任务内容',
+              url: '/tasks',
+              icon: IconChecklist,
+            },
+            {
+              title: '涉及应用',
+              url: '/apps',
+              icon: IconPackages,
+            },
+            {
+              title: '后台消息',
+              url: '/chats',
+              badge: '3',
+              icon: IconFileText,
+            },
+            {
+              title: '用户管理',
+              url: '/users',
+              icon: IconUsersGroup,
+            },
+          ],
+        },
+        {
+          title: '示例页面',
+          icon: IconBrowserCheck,
+          items: [
+            {
+              title: 'Sign In',
+              url: '/sign-in',
+              icon: IconKey,
+            },
+            {
+              title: 'Sign In (2 Col)',
+              url: '/sign-in-2',
+              icon: IconKey,
+            },
+            {
+              title: 'Sign Up',
+              url: '/sign-up',
+              icon: IconUser,
+            },
+            {
+              title: 'Forgot Password',
+              url: '/forgot-password',
+              icon: IconLockAccess,
+            },
+            {
+              title: 'OTP',
+              url: '/otp',
+              icon: IconKey,
+            },
+          ],
+        },
+        {
+          title: '问题页面',
+          icon: IconError404,
           items: [
             {
               title: 'Unauthorized',
               url: '/401',
-              icon: IconLock,
+              icon: IconLockAccess,
             },
             {
               title: 'Forbidden',
               url: '/403',
-              icon: IconUserOff,
+              icon: IconUser,
             },
             {
               title: 'Not Found',
@@ -137,13 +280,8 @@ export const sidebarData: SidebarData = {
             },
           ],
         },
-      ],
-    },
-    {
-      title: 'Other',
-      items: [
         {
-          title: 'Settings',
+          title: '管理页面',
           icon: IconSettings,
           items: [
             {
@@ -154,7 +292,7 @@ export const sidebarData: SidebarData = {
             {
               title: 'Account',
               url: '/settings/account',
-              icon: IconTool,
+              icon: IconTools,
             },
             {
               title: 'Appearance',
@@ -173,10 +311,25 @@ export const sidebarData: SidebarData = {
             },
           ],
         },
+      ],
+    },
+    {
+      title: '帮助与说明',
+      items: [
         {
-          title: 'Help Center',
+          title: '使用说明',
           url: '/help-center',
-          icon: IconHelp,
+          icon: IconHelpCircle,
+        },
+        {
+          title: '常见问题',
+          url: '/help-center',
+          icon: IconQuestionMark,
+        },
+        {
+          title: '联系方式',
+          url: '/help-center',
+          icon: IconPhoneCall,
         },
       ],
     },

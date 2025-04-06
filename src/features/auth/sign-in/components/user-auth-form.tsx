@@ -65,9 +65,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               name='email'
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>邮箱</FormLabel>
                   <FormControl>
-                    <Input placeholder='name@example.com' {...field} />
+                    <Input placeholder='admin@liushen.fun' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -79,12 +79,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               render={({ field }) => (
                 <FormItem className='space-y-1'>
                   <div className='flex items-center justify-between'>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>密码</FormLabel>
                     <Link
                       to='/forgot-password'
                       className='text-sm font-medium text-muted-foreground hover:opacity-75'
                     >
-                      Forgot password?
+                      忘了？点我
                     </Link>
                   </div>
                   <FormControl>
@@ -95,7 +95,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               )}
             />
             <Button className='mt-2' disabled={isLoading}>
-              Login
+              登录
             </Button>
 
             <div className='relative my-2'>
@@ -104,7 +104,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               </div>
               <div className='relative flex justify-center text-xs uppercase'>
                 <span className='bg-background px-2 text-muted-foreground'>
-                  Or continue with
+                  通过三方登录
                 </span>
               </div>
             </div>
@@ -116,7 +116,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 type='button'
                 disabled={isLoading}
               >
-                <IconBrandGithub className='h-4 w-4' /> GitHub
+                <IconBrandGithub className='h-4 w-4' /> GitHub(暂不支持)
               </Button>
               <Button
                 variant='outline'
@@ -124,7 +124,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 type='button'
                 disabled={isLoading}
               >
-                <IconBrandFacebook className='h-4 w-4' /> Facebook
+                <IconBrandFacebook className='h-4 w-4' /> Facebook(暂不支持)
               </Button>
             </div>
           </div>
