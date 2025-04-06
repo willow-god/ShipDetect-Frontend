@@ -57,7 +57,7 @@ export function UploadDialog({ onUpload }: { onUpload: () => void }) {
       <DialogTrigger asChild>
         <Button variant="outline">添加视频</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] animate-in fade-in-50">
         <DialogHeader>
           <DialogTitle>添加新视频数据源</DialogTitle>
           <DialogDescription>
@@ -77,7 +77,7 @@ export function UploadDialog({ onUpload }: { onUpload: () => void }) {
             <Label htmlFor="upload-method" className="text-right">
               上传方式
             </Label>
-            <div  className="col-span-3">
+            <div className="col-span-3" >
             <Select value={uploadMethod} onValueChange={(value) => setUploadMethod(value as 'file' | 'url')}>
               <SelectTrigger>
                 <SelectValue placeholder="选择上传方式" />
@@ -91,7 +91,6 @@ export function UploadDialog({ onUpload }: { onUpload: () => void }) {
               </SelectContent>
             </Select>
             </div>
-            
           </div>
 
           {/* 根据选择显示不同的输入框 */}
