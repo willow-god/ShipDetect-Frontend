@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { toast } from '@/hooks/use-toast'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
@@ -42,8 +43,18 @@ export function UploadDialog({ onUpload }: { onUpload: () => void }) {
           'Content-Type': 'multipart/form-data',
         },
       })
+      toast({
+        title: '视频上传成功',
+        description: '视频数据源已成功添加到系统中',
+        duration: 2000,
+      })
     } else {
       await axios.post(`${BASE_URL}/video/add_video`, { video_name: name, video_url: url })
+      toast({
+        title: '视频上传成功',
+        description: '视频数据源已成功添加到系统中',
+        duration: 2000,
+      })
     }
     setOpen(false)
     setFile(null)
@@ -57,7 +68,7 @@ export function UploadDialog({ onUpload }: { onUpload: () => void }) {
       <DialogTrigger asChild>
         <Button variant="outline">添加视频</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] animate-in fade-in-50">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>添加新视频数据源</DialogTitle>
           <DialogDescription>

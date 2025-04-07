@@ -20,7 +20,6 @@ export default {
     },
     extend: {
       fontFamily: {
-        // 已经删除，后续会添加其他字体
         inter: ['Inter', ...fontFamily.sans],
         manrope: ['Manrope', ...fontFamily.sans],
       },

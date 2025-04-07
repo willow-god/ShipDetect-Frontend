@@ -82,9 +82,23 @@ export default function VideoManager() {
   }
 
   const handleDelete = async () => {
-    for (const id of selectedIds) {
-      await axios.delete(`${BASE_URL}/video/delete_video/${id}`)
+    try {
+      for (const id of selectedIds) {
+        await axios.delete(`${BASE_URL}/video/delete_video/${id}`)
+        toast({
+          title: `视频ID ${id} 删除成功`,
+          description: '视频数据已删除',
+          variant: 'default',
+        })
+      }
+    } catch (_error) {
+      toast({
+        title: '删除视频失败',
+        description: '请检查网络连接或服务器状态',
+        variant: 'destructive',
+      })
     }
+      
     setSelectedIds([])
     setOpenDelete(false)
     fetchVideos()
