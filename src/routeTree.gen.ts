@@ -73,6 +73,9 @@ const AuthenticatedSettingsAppearanceLazyImport = createFileRoute(
 const AuthenticatedSettingsAccountLazyImport = createFileRoute(
   '/_authenticated/settings/account',
 )()
+const AuthenticatedIdentifyVideoViewerIndexLazyImport = createFileRoute(
+  '/_authenticated/identify/video/viewer/',
+)()
 const AuthenticatedIdentifyVideoManagerIndexLazyImport = createFileRoute(
   '/_authenticated/identify/video/manager/',
 )()
@@ -311,6 +314,17 @@ const AuthenticatedSettingsAccountLazyRoute =
     ),
   )
 
+const AuthenticatedIdentifyVideoViewerIndexLazyRoute =
+  AuthenticatedIdentifyVideoViewerIndexLazyImport.update({
+    id: '/identify/video/viewer/',
+    path: '/identify/video/viewer/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/identify/video/viewer/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
 const AuthenticatedIdentifyVideoManagerIndexLazyRoute =
   AuthenticatedIdentifyVideoManagerIndexLazyImport.update({
     id: '/identify/video/manager/',
@@ -522,6 +536,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIdentifyVideoManagerIndexLazyImport
       parentRoute: typeof AuthenticatedRouteImport
     }
+    '/_authenticated/identify/video/viewer/': {
+      id: '/_authenticated/identify/video/viewer/'
+      path: '/identify/video/viewer'
+      fullPath: '/identify/video/viewer'
+      preLoaderRoute: typeof AuthenticatedIdentifyVideoViewerIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
   }
 }
 
@@ -565,6 +586,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedTasksIndexLazyRoute: typeof AuthenticatedTasksIndexLazyRoute
   AuthenticatedUsersIndexLazyRoute: typeof AuthenticatedUsersIndexLazyRoute
   AuthenticatedIdentifyVideoManagerIndexLazyRoute: typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
+  AuthenticatedIdentifyVideoViewerIndexLazyRoute: typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -581,6 +603,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedUsersIndexLazyRoute: AuthenticatedUsersIndexLazyRoute,
   AuthenticatedIdentifyVideoManagerIndexLazyRoute:
     AuthenticatedIdentifyVideoManagerIndexLazyRoute,
+  AuthenticatedIdentifyVideoViewerIndexLazyRoute:
+    AuthenticatedIdentifyVideoViewerIndexLazyRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -614,6 +638,7 @@ export interface FileRoutesByFullPath {
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
   '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
+  '/identify/video/viewer': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -642,6 +667,7 @@ export interface FileRoutesByTo {
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
   '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
+  '/identify/video/viewer': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
 
 export interface FileRoutesById {
@@ -674,6 +700,7 @@ export interface FileRoutesById {
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexLazyRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexLazyRoute
   '/_authenticated/identify/video/manager/': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
+  '/_authenticated/identify/video/viewer/': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -706,6 +733,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/users'
     | '/identify/video/manager'
+    | '/identify/video/viewer'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/500'
@@ -733,6 +761,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/users'
     | '/identify/video/manager'
+    | '/identify/video/viewer'
   id:
     | '__root__'
     | '/_authenticated'
@@ -763,6 +792,7 @@ export interface FileRouteTypes {
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
     | '/_authenticated/identify/video/manager/'
+    | '/_authenticated/identify/video/viewer/'
   fileRoutesById: FileRoutesById
 }
 
@@ -833,7 +863,8 @@ export const routeTree = rootRoute
         "/_authenticated/status/",
         "/_authenticated/tasks/",
         "/_authenticated/users/",
-        "/_authenticated/identify/video/manager/"
+        "/_authenticated/identify/video/manager/",
+        "/_authenticated/identify/video/viewer/"
       ]
     },
     "/(auth)/500": {
@@ -938,6 +969,10 @@ export const routeTree = rootRoute
     },
     "/_authenticated/identify/video/manager/": {
       "filePath": "_authenticated/identify/video/manager/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/identify/video/viewer/": {
+      "filePath": "_authenticated/identify/video/viewer/index.lazy.tsx",
       "parent": "/_authenticated"
     }
   }

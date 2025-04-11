@@ -124,7 +124,12 @@ export default function VideoManager() {
 
       <Main>
         <div className='mb-2 flex items-center justify-between space-y-2'>
-          <h1 className='text-2xl font-bold tracking-tight'>视频管理</h1>
+          <div>
+            <h1 className='text-2xl font-bold tracking-tight'>视频管理</h1>
+            <p className='text-muted-foreground'>
+              管理视频数据，后端为 MySQL 引擎高效存储。
+            </p>
+          </div>
           <div className='flex items-center space-x-2'>
             <UploadDialog onUpload={fetchVideos}/>
             <Button

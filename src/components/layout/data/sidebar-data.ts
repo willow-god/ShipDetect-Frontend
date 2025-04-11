@@ -102,7 +102,7 @@ export const sidebarData: SidebarData = {
             },
             {
               title: '数据查看',
-              url: '/sign-in-2',
+              url: '/identify/video/viewer',
               icon: IconFileText,
             },
           ],
