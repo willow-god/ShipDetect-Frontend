@@ -9,20 +9,21 @@ import {
   CardTitle,
   CardDescription,
 } from '@/components/ui/card'
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from '@/components/ui/table'
+// import {
+//   Table,
+//   TableHeader,
+//   TableRow,
+//   TableHead,
+//   TableBody,
+//   TableCell,
+// } from '@/components/ui/table'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { TopNav } from '@/components/layout/top-nav'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { ResultFilterCard } from './components/result-filter-card'
+import { ResultTable } from './components/result-table'
 import { ViewResultDialog, ResultItem } from './components/view-result-dialog'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -151,37 +152,8 @@ export default function ResultManager() {
             <CardDescription>支持多条件筛选查看识别结果</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Ship ID</TableHead>
-                  <TableHead>Video ID</TableHead>
-                  <TableHead>类别</TableHead>
-                  <TableHead>置信度</TableHead>
-                  <TableHead>时间</TableHead>
-                  <TableHead>查看</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {results.map((r, i) => (
-                  <TableRow key={i}>
-                    <TableCell>{r.ship_id}</TableCell>
-                    <TableCell>{r.video_id}</TableCell>
-                    <TableCell>{r.category}</TableCell>
-                    <TableCell>{r.confidence.toFixed(2)}</TableCell>
-                    <TableCell>{r.timestamp}</TableCell>
-                    <TableCell>
-                      <button
-                        className='text-blue-500 underline'
-                        onClick={() => setDialogData(r)}
-                      >
-                        查看
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            {/* 使用 ResultTable 组件替代原始表格 */}
+            <ResultTable data={results} onView={(item) => setDialogData(item)} />
           </CardContent>
         </Card>
 
