@@ -1,10 +1,20 @@
-// File: components/result-filter-card.tsx
 import { useEffect, useState } from 'react'
+import {
+  QuestionMarkCircledIcon,
+  PlusCircledIcon,
+} from '@radix-ui/react-icons'
+import { VideoIcon, TagIcon } from 'lucide-react'
 import axios from 'axios'
 import { Card } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import { MultiSelect } from './multi-select'
+import { Checkbox } from '@/components/ui/checkbox'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/ui/button'
 
 const CATEGORY_MAP: Record<number, string> = {
   1: 'Ore Carrier',
@@ -45,7 +55,7 @@ export function ResultFilterCard({
         const list = res.data as number[]
         setVideoOptions(
           list.map((id) => ({
-            label: id.toString(),
+            label: `VideoID_${id}`,
             value: id,
           }))
         )
@@ -53,54 +63,98 @@ export function ResultFilterCard({
   }, [])
 
   return (
-    <Card className='mb-4 space-y-4 p-4'>
-      {/* 类别选择 */}
-      <div className='flex flex-wrap items-center gap-4'>
-        <span className='text-sm font-medium'>船舶类别：</span>
-        {Object.entries(CATEGORY_MAP).map(([id, label]) => {
-          const numericId = parseInt(id)
-          return (
-            <label key={id} className='flex items-center space-x-1'>
-              <Checkbox
-                checked={selectedCategories.includes(numericId)}
-                onCheckedChange={(checked) => {
-                  setSelectedCategories((prev) =>
-                    checked
-                      ? [...prev, numericId]
-                      : prev.filter((c) => c !== numericId)
-                  )
-                }}
-              />
-              <span>{label}</span>
-            </label>
-          )
-        })}
-      </div>
+    <Card className='mb-4 p-4'>
+      <div className='flex flex-wrap items-center justify-between gap-4'>
+        {/* 左侧 筛选按钮 */}
+        <div className='flex items-center gap-4'>
+          {/* 类别按钮 */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant='outline' className='h-8'>
+                船舶类别
+                <PlusCircledIcon className='h-4 w-4 ml-1' />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-56'>
+              {Object.entries(CATEGORY_MAP).map(([id, label]) => {
+                const numericId = parseInt(id)
+                const checked = selectedCategories.includes(numericId)
+                return (
+                  <DropdownMenuItem
+                    key={id}
+                    onSelect={(e) => {
+                      e.preventDefault()
+                      setSelectedCategories((prev) =>
+                        checked
+                          ? prev.filter((v) => v !== numericId)
+                          : [...prev, numericId]
+                      )
+                    }}
+                    className='cursor-pointer space-x-2'
+                  >
+                    <Checkbox checked={checked} />
+                    <span className='flex items-center gap-2'>
+                      <TagIcon className='w-4 h-4 text-gray-500' />
+                      {label}
+                    </span>
+                  </DropdownMenuItem>
+                )
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-      {/* 视频ID + 搜索框 */}
-      <div className='flex flex-wrap justify-between gap-4'>
-        <div className='flex items-center gap-2'>
-          <span className='text-sm font-medium'>视频ID：</span>
-          <MultiSelect
-            placeholder='选择视频ID'
-            options={videoOptions}
-            selected={selectedVideoIds}
-            setSelected={setSelectedVideoIds}
-          />
+          {/* 视频ID按钮 */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant='outline' className='h-8'>
+                视频ID
+                <PlusCircledIcon className='h-4 w-4 ml-1' />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-56 max-h-64 overflow-y-auto'>
+              {videoOptions.map((option) => {
+                const checked = selectedVideoIds.includes(option.value)
+                return (
+                  <DropdownMenuItem
+                    key={option.value}
+                    onSelect={(e) => {
+                      e.preventDefault()
+                      setSelectedVideoIds((prev) =>
+                        checked
+                          ? prev.filter((id) => id !== option.value)
+                          : [...prev, option.value]
+                      )
+                    }}
+                    className='cursor-pointer space-x-2'
+                  >
+                    <Checkbox checked={checked} />
+                    <span className='flex items-center gap-2'>
+                      <VideoIcon className='w-4 h-4 text-gray-500' />
+                      {option.label}
+                    </span>
+                  </DropdownMenuItem>
+                )
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
+
+        {/* 右侧 搜索栏 */}
         <div className='flex items-center gap-2'>
           <Input
             placeholder='根据 ship_id 搜索'
             value={shipIdKeyword}
             onChange={(e) => setShipIdKeyword(e.target.value)}
-            className='w-64'
+            className='w-64 h-8'
           />
-          <button
-            className='rounded bg-primary px-4 py-2 text-white hover:bg-primary/90'
+          <Button
+            variant='outline'
+            className='h-8 border-dashed'
             onClick={onSearch}
           >
             搜索
-          </button>
+            <QuestionMarkCircledIcon className='h-4 w-4 ml-1' />
+          </Button>
         </div>
       </div>
     </Card>

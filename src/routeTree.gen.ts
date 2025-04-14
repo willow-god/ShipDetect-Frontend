@@ -73,11 +73,20 @@ const AuthenticatedSettingsAppearanceLazyImport = createFileRoute(
 const AuthenticatedSettingsAccountLazyImport = createFileRoute(
   '/_authenticated/settings/account',
 )()
+const AuthenticatedIdentifyInfoIndexLazyImport = createFileRoute(
+  '/_authenticated/identify/info/',
+)()
 const AuthenticatedIdentifyVideoViewerIndexLazyImport = createFileRoute(
   '/_authenticated/identify/video/viewer/',
 )()
 const AuthenticatedIdentifyVideoManagerIndexLazyImport = createFileRoute(
   '/_authenticated/identify/video/manager/',
+)()
+const AuthenticatedIdentifySampleVideoIndexLazyImport = createFileRoute(
+  '/_authenticated/identify/sample/video/',
+)()
+const AuthenticatedIdentifySamplePictureIndexLazyImport = createFileRoute(
+  '/_authenticated/identify/sample/picture/',
 )()
 
 // Create/Update Routes
@@ -314,6 +323,17 @@ const AuthenticatedSettingsAccountLazyRoute =
     ),
   )
 
+const AuthenticatedIdentifyInfoIndexLazyRoute =
+  AuthenticatedIdentifyInfoIndexLazyImport.update({
+    id: '/identify/info/',
+    path: '/identify/info/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/identify/info/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
 const AuthenticatedIdentifyVideoViewerIndexLazyRoute =
   AuthenticatedIdentifyVideoViewerIndexLazyImport.update({
     id: '/identify/video/viewer/',
@@ -332,6 +352,28 @@ const AuthenticatedIdentifyVideoManagerIndexLazyRoute =
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/identify/video/manager/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedIdentifySampleVideoIndexLazyRoute =
+  AuthenticatedIdentifySampleVideoIndexLazyImport.update({
+    id: '/identify/sample/video/',
+    path: '/identify/sample/video/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/identify/sample/video/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedIdentifySamplePictureIndexLazyRoute =
+  AuthenticatedIdentifySamplePictureIndexLazyImport.update({
+    id: '/identify/sample/picture/',
+    path: '/identify/sample/picture/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/identify/sample/picture/index.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -529,6 +571,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsersIndexLazyImport
       parentRoute: typeof AuthenticatedRouteImport
     }
+    '/_authenticated/identify/info/': {
+      id: '/_authenticated/identify/info/'
+      path: '/identify/info'
+      fullPath: '/identify/info'
+      preLoaderRoute: typeof AuthenticatedIdentifyInfoIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/identify/sample/picture/': {
+      id: '/_authenticated/identify/sample/picture/'
+      path: '/identify/sample/picture'
+      fullPath: '/identify/sample/picture'
+      preLoaderRoute: typeof AuthenticatedIdentifySamplePictureIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/identify/sample/video/': {
+      id: '/_authenticated/identify/sample/video/'
+      path: '/identify/sample/video'
+      fullPath: '/identify/sample/video'
+      preLoaderRoute: typeof AuthenticatedIdentifySampleVideoIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/identify/video/manager/': {
       id: '/_authenticated/identify/video/manager/'
       path: '/identify/video/manager'
@@ -585,6 +648,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedStatusIndexLazyRoute: typeof AuthenticatedStatusIndexLazyRoute
   AuthenticatedTasksIndexLazyRoute: typeof AuthenticatedTasksIndexLazyRoute
   AuthenticatedUsersIndexLazyRoute: typeof AuthenticatedUsersIndexLazyRoute
+  AuthenticatedIdentifyInfoIndexLazyRoute: typeof AuthenticatedIdentifyInfoIndexLazyRoute
+  AuthenticatedIdentifySamplePictureIndexLazyRoute: typeof AuthenticatedIdentifySamplePictureIndexLazyRoute
+  AuthenticatedIdentifySampleVideoIndexLazyRoute: typeof AuthenticatedIdentifySampleVideoIndexLazyRoute
   AuthenticatedIdentifyVideoManagerIndexLazyRoute: typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
   AuthenticatedIdentifyVideoViewerIndexLazyRoute: typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
@@ -601,6 +667,12 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedStatusIndexLazyRoute: AuthenticatedStatusIndexLazyRoute,
   AuthenticatedTasksIndexLazyRoute: AuthenticatedTasksIndexLazyRoute,
   AuthenticatedUsersIndexLazyRoute: AuthenticatedUsersIndexLazyRoute,
+  AuthenticatedIdentifyInfoIndexLazyRoute:
+    AuthenticatedIdentifyInfoIndexLazyRoute,
+  AuthenticatedIdentifySamplePictureIndexLazyRoute:
+    AuthenticatedIdentifySamplePictureIndexLazyRoute,
+  AuthenticatedIdentifySampleVideoIndexLazyRoute:
+    AuthenticatedIdentifySampleVideoIndexLazyRoute,
   AuthenticatedIdentifyVideoManagerIndexLazyRoute:
     AuthenticatedIdentifyVideoManagerIndexLazyRoute,
   AuthenticatedIdentifyVideoViewerIndexLazyRoute:
@@ -637,6 +709,9 @@ export interface FileRoutesByFullPath {
   '/status': typeof AuthenticatedStatusIndexLazyRoute
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
+  '/identify/info': typeof AuthenticatedIdentifyInfoIndexLazyRoute
+  '/identify/sample/picture': typeof AuthenticatedIdentifySamplePictureIndexLazyRoute
+  '/identify/sample/video': typeof AuthenticatedIdentifySampleVideoIndexLazyRoute
   '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
   '/identify/video/viewer': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
@@ -666,6 +741,9 @@ export interface FileRoutesByTo {
   '/status': typeof AuthenticatedStatusIndexLazyRoute
   '/tasks': typeof AuthenticatedTasksIndexLazyRoute
   '/users': typeof AuthenticatedUsersIndexLazyRoute
+  '/identify/info': typeof AuthenticatedIdentifyInfoIndexLazyRoute
+  '/identify/sample/picture': typeof AuthenticatedIdentifySamplePictureIndexLazyRoute
+  '/identify/sample/video': typeof AuthenticatedIdentifySampleVideoIndexLazyRoute
   '/identify/video/manager': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
   '/identify/video/viewer': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
@@ -699,6 +777,9 @@ export interface FileRoutesById {
   '/_authenticated/status/': typeof AuthenticatedStatusIndexLazyRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexLazyRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexLazyRoute
+  '/_authenticated/identify/info/': typeof AuthenticatedIdentifyInfoIndexLazyRoute
+  '/_authenticated/identify/sample/picture/': typeof AuthenticatedIdentifySamplePictureIndexLazyRoute
+  '/_authenticated/identify/sample/video/': typeof AuthenticatedIdentifySampleVideoIndexLazyRoute
   '/_authenticated/identify/video/manager/': typeof AuthenticatedIdentifyVideoManagerIndexLazyRoute
   '/_authenticated/identify/video/viewer/': typeof AuthenticatedIdentifyVideoViewerIndexLazyRoute
 }
@@ -732,6 +813,9 @@ export interface FileRouteTypes {
     | '/status'
     | '/tasks'
     | '/users'
+    | '/identify/info'
+    | '/identify/sample/picture'
+    | '/identify/sample/video'
     | '/identify/video/manager'
     | '/identify/video/viewer'
   fileRoutesByTo: FileRoutesByTo
@@ -760,6 +844,9 @@ export interface FileRouteTypes {
     | '/status'
     | '/tasks'
     | '/users'
+    | '/identify/info'
+    | '/identify/sample/picture'
+    | '/identify/sample/video'
     | '/identify/video/manager'
     | '/identify/video/viewer'
   id:
@@ -791,6 +878,9 @@ export interface FileRouteTypes {
     | '/_authenticated/status/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/_authenticated/identify/info/'
+    | '/_authenticated/identify/sample/picture/'
+    | '/_authenticated/identify/sample/video/'
     | '/_authenticated/identify/video/manager/'
     | '/_authenticated/identify/video/viewer/'
   fileRoutesById: FileRoutesById
@@ -863,6 +953,9 @@ export const routeTree = rootRoute
         "/_authenticated/status/",
         "/_authenticated/tasks/",
         "/_authenticated/users/",
+        "/_authenticated/identify/info/",
+        "/_authenticated/identify/sample/picture/",
+        "/_authenticated/identify/sample/video/",
         "/_authenticated/identify/video/manager/",
         "/_authenticated/identify/video/viewer/"
       ]
@@ -965,6 +1058,18 @@ export const routeTree = rootRoute
     },
     "/_authenticated/users/": {
       "filePath": "_authenticated/users/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/identify/info/": {
+      "filePath": "_authenticated/identify/info/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/identify/sample/picture/": {
+      "filePath": "_authenticated/identify/sample/picture/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/identify/sample/video/": {
+      "filePath": "_authenticated/identify/sample/video/index.lazy.tsx",
       "parent": "/_authenticated"
     },
     "/_authenticated/identify/video/manager/": {

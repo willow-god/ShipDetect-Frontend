@@ -5,9 +5,6 @@ import { toast } from '@/hooks/use-toast'
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
 } from '@/components/ui/card'
 // import {
 //   Table,
@@ -147,10 +144,6 @@ export default function ResultManager() {
         </div>
 
         <Card>
-          <CardHeader>
-            <CardTitle>识别结果</CardTitle>
-            <CardDescription>支持多条件筛选查看识别结果</CardDescription>
-          </CardHeader>
           <CardContent>
             {/* 使用 ResultTable 组件替代原始表格 */}
             <ResultTable data={results} onView={(item) => setDialogData(item)} />

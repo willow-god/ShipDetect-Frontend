@@ -113,36 +113,20 @@ export const sidebarData: SidebarData = {
           items: [
             {
               title: '单图识别',
-              url: '/401',
+              url: '/identify/sample/picture',
               icon: IconFileSearch,
             },
             {
               title: '视频识别',
-              url: '/403',
+              url: '/identify/sample/video',
               icon: IconVideo,
-            },
-            {
-              title: '数据展示',
-              url: '/404',
-              icon: IconListDetails,
             },
           ],
         },
         {
-          title: '信息管理',
+          title: '船号管理',
           icon: IconShip,
-          items: [
-            {
-              title: '船舶号列表',
-              url: '/401',
-              icon: IconListDetails,
-            },
-            {
-              title: '管理船舶号',
-              url: '/403',
-              icon: IconAdjustments,
-            },
-          ],
+          url: '/identify/info',
         },
       ],
     },
